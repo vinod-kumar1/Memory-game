@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack --mode production",
-    "pre-deploy": "npm "
+    "pre-deploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",

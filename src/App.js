@@ -17,15 +17,15 @@ const emojiArrays = [
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
-    console.log(j);
     [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
   }
   return arr;
 }
 
 export default function App() {
-  let [gameon, setGameon] = useState(false);
-  let emojiArray = useRef(shuffleArray(emojiArrays));
+  const [gameon, setGameon] = useState(false);
+  const emojiArray = useRef(shuffleArray(emojiArrays));
+
   function StartGameCard({ startGame }) {
     function start() {
       startGame(true);
@@ -43,19 +43,20 @@ export default function App() {
   }
 
   function MemoryCard() {
-    let [openEmojis, setOpen] = useState([]);
-    let [selecting, setSelecting] = useState(false);
-    let [selectionStatus, setSelectionStatus] = useState("Start Selecting");
+    const [openEmojis, setOpen] = useState([]);
+    const [selecting, setSelecting] = useState(false);
+    const [selectionStatus, setSelectionStatus] = useState("Start Selecting");
 
-    let selected = useRef();
+    const selected = useRef();
 
     useEffect(() => {
-      if (openEmojis.length == emojiArray.current.length) {
+      if (openEmojis.length === emojiArray.current.length) {
         setSelectionStatus("Hooray!!! You've Won, Refresh Start again");
       }
     }, [openEmojis]);
 
     function startplay(index) {
+      // console.log(openEmojis);
       if (!selecting) {
         setSelecting(true);
         setOpen((p) => [...p, index]);
@@ -65,7 +66,7 @@ export default function App() {
         );
         return;
       } else {
-        if (emojiArray.current[index] != selected.current) {
+        if (emojiArray.current[index] !== selected.current) {
           setOpen((p) => {
             let res = [...p];
             res.pop();
@@ -87,14 +88,16 @@ export default function App() {
       <div className="emojis">
         <div className="display-emojis">
           {emojiArray.current.map((emoji, index) => {
+            console.log(openEmojis.includes(index));
             return (
               <React.Fragment key={index}>
                 <button
                   onClick={() => startplay(index)}
-                  className={`card`}
+                  className={`card ${openEmojis.includes(index) ? "open" : ""}`}
                   key={index}
                 >
-                  {openEmojis.includes(index) ? emoji : <HideEle />}
+                  {/* Show emoji or the placeholder 🟥 */}
+                  {openEmojis.includes(index) ? emoji : ""}
                 </button>
               </React.Fragment>
             );

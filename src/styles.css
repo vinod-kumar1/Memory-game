@@ -1,3 +1,135 @@
-.close {
-  backface-visibility: visible;
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #121212; /* Dark background */
+  color: #eaeaea; /* Light text */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h2 {
+  color: #f0f0f0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Container for the entire app */
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  background-color: #1d1d1d; /* Darker container */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h4 {
+  color: #bbb;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #4caf50; /* Green background */
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Card Grid */
+.display-emojis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  width: 80px;
+  height: 80px;
+  background-color: #333;
+  border: 2px solid #555;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.card:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+.card:focus {
+  outline: none;
+}
+
+/* Placeholder for hidden emoji */
+.card .placeholder {
+  font-size: 3rem;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+/* When card is open, ensure emoji is visible */
+.card.open {
+  background-color: #444; /* Keep dark background */
+  border: 2px solid #777;
+  color: #fff; /* Make emoji white to be visible */
+}
+
+.card.open span {
+  visibility: visible;
+  color: #fff; /* Ensure emoji has visible color */
+  font-size: 2.5rem; /* Adjust size if needed */
+}
+
+/* Show emoji when card is open */
+.card.open .placeholder {
+  visibility: hidden; /* Hide placeholder */
+}
+
+/* Messages */
+p {
+  color: #ddd;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+p.win {
+  color: #4caf50; /* Green text on winning */
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+p.error {
+  color: #ff0000; /* Red text for errors */
+  font-weight: bold;
+}
+
+/* Start Game Card */
+.start-game button {
+  margin-top: 20px;
 }
